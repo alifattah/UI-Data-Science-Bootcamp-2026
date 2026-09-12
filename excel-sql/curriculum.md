@@ -35,9 +35,3 @@
 | 09 | Window Functions | OVER، PARTITION BY، ORDER BY، ROW_NUMBER، RANK، DENSE_RANK | رتبه‌بندی و تحلیل داخل گروه |
 | 10 | Trend و تحلیل پیشرفته | LAG/LEAD، Running Total، Moving/Comparative Analysis | تحلیل روند زمانی |
 | 11 | پروژه پایانی SQL | ترکیب SELECT، Filtering، Aggregation، JOIN، Subquery، CTE و Window Functions | ساخت گزارش تحلیلی از دیتابیس |
-
-### الگوی تدریس
-
-**Concept → Demo → Guided Practice → Challenge → Review**
-
-تمرکز اصلی روی حل مسئله‌های واقعی Data Analysis است، نه آموزش جداگانه منوها و قابلیت‌های نرم‌افزار.
