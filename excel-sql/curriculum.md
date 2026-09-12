@@ -20,6 +20,20 @@
 | 14 | Dashboard | KPI، Layout، Interactive Charts، Slicers/Form Controls، اصول طراحی داشبورد | ساخت داشبورد تعاملی |
 | 15 | پروژه پایانی Excel | یکپارچه‌سازی Cleaning، Formula، Pivot، Chart و Dashboard | تحویل یک گزارش/داشبورد کامل |
 
+### ساختار محتوایی فصل ۲
+
+جلسه ۰۲ فصل/ماژول «مقدمات و پایه Excel» به چند بخش آموزشی مستقل در ریپو تقسیم شده است تا هنگام تدریس و مطالعه، هر موضوع صفحه‌ی مشخص خود را داشته باشد:
+
+| بخش | عنوان | موضوعات |
+|---|---|---|
+| 02-01 | آشنایی با محیط Excel | Workbook، Worksheet، Cell فعال، Formula Bar، Ribbon، Tabها، Search و Quick Access Toolbar |
+| 02-02 | فرمول‌نویسی و توابع عددی پایه | Formula، Reference، عملگرها، SUM، PRODUCT، AVERAGE، MIN، MAX، COUNT، ROUND، POWER، MOD |
+| 02-03 | میانبرها و Fill Handle | انتخاب سریع، Shortcutهای مهم، F4، AutoFill، Series و Copy کردن Formula |
+| 02-04 | کار با متن، تاریخ و زمان | String، LEN، SUBSTITUTE، REPLACE، UPPER، LOWER، TODAY، NOW، DATEDIF |
+| 02-05 | قالب‌بندی و خوانایی داده | Font، Border، Alignment، Wrap Text، Number Formats، Styles، Format as Table |
+| 02-06 | Conditional Formatting | Highlight Rules، Duplicate Values، Top/Bottom، Data Bars، Color Scales، Icon Sets و Formula Rules |
+| 02-07 | سازمان‌دهی و ساختاردهی داده | ساختار Dataset، Sort، Filter، Data Quality، Pivot، Visualization، Dashboard و Workflow |
+
 ## SQL / Database
 
 | جلسه | عنوان | مباحث اصلی | خروجی عملی |
