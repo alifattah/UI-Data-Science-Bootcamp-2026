@@ -80,6 +80,30 @@
 | 06-06 | Histogram | Bin، توزیع، چولگی، تمرکز و چندقله‌ای بودن |
 | 06-07 | طراحی و شخصی‌سازی Chart | عنوان، محور، Label، رنگ، نویز، خوانایی و پروژه Visualization |
 
+### ساختار محتوایی فصل ۷ — Pivot Table و Pivot Chart
+
+| بخش | عنوان | موضوعات | خروجی |
+|---|---|---|---|
+| 07-01 | PivotTable چیست و چرا مهم است؟ | خلاصه‌سازی، Grouping، Aggregation، Filtering، داده مناسب | تشخیص سؤال مناسب برای Pivot |
+| 07-02 | ساخت و پیکربندی PivotTable | Rows، Columns، Values، Filters، Recommended PivotTables، Change Data Source | ساخت گزارش‌های چندبعدی |
+| 07-03 | شخصی‌سازی و تنظیم محاسبات | Value Field Settings، Sum/Count/Average، Show Values As، Grand Total، Design | گزارش خوانا و متناسب با نیاز |
+| 07-04 | تحلیل داده با PivotTable | EDA، Counts vs Percentages، گروه‌بندی متغیرها، سناریوی Titanic | استخراج الگوهای اولیه |
+| 07-05 | امکانات پیشرفته PivotTable | Calculated Field، Slicer، Timeline، چند Pivot، GETPIVOTDATA | گزارش تعاملی |
+| 07-06 | Drill Down و کنترل صحت | Drill Down، KPI validation، کنترل Total، بررسی Filterها | ردیابی KPI تا داده خام |
+| 07-07 | PivotChart و گزارش‌دهی پویا | PivotChart، اتصال Slicer، Timeline و طراحی گزارش | گزارش پویا و تعاملی |
+
+### ساختار محتوایی فصل ۸ — Dashboard و پروژه پایانی
+
+| بخش | عنوان | موضوعات | خروجی |
+|---|---|---|---|
+| 08-01 | BI و مفهوم Dashboard | BI، Dashboard، KPI، مخاطب، Data Storytelling | تعریف هدف داشبورد |
+| 08-02 | طراحی Dashboard | Layout، سلسله‌مراتب، انتخاب Chart، KPI Card، خوانایی | طرح اولیه داشبورد |
+| 08-03 | گزارش‌های پویا با Drop-down | Data Validation، FILTER، Dynamic Table/Range، SWITCH | گزارش تعاملی پایه |
+| 08-04 | Slicer و Timeline | Slicer، Timeline، اتصال به چند Pivot و کنترل تعامل | فیلتر چندبخشی |
+| 08-05 | Form Controls | Check Box، Combo Box، List Box، Option Button، Scroll Bar، Spinner | کنترل‌های رابط کاربری |
+| 08-06 | VBA و اتوماسیون | Macro، Button، VBA، امنیت Macro و موارد استفاده | اتوماسیون ساده |
+| 08-07 | پروژه پایانی Dashboard | Cleaning، Pivot، Chart، KPI، Slicer، Timeline، Layout، QA | تحویل داشبورد کامل |
+
 ## SQL / Database
 
 | جلسه | عنوان | مباحث اصلی | خروجی عملی |
