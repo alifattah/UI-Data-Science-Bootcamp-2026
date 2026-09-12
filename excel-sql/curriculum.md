@@ -22,8 +22,6 @@
 
 ### ساختار محتوایی فصل ۲
 
-جلسه ۰۲ فصل/ماژول «مقدمات و پایه Excel» به چند بخش آموزشی مستقل در ریپو تقسیم شده است تا هنگام تدریس و مطالعه، هر موضوع صفحه‌ی مشخص خود را داشته باشد:
-
 | بخش | عنوان | موضوعات |
 |---|---|---|
 | 02-01 | آشنایی با محیط Excel | Workbook، Worksheet، Cell فعال، Formula Bar، Ribbon، Tabها، Search و Quick Access Toolbar |
@@ -33,6 +31,19 @@
 | 02-05 | قالب‌بندی و خوانایی داده | Font، Border، Alignment، Wrap Text، Number Formats، Styles، Format as Table |
 | 02-06 | Conditional Formatting | Highlight Rules، Duplicate Values، Top/Bottom، Data Bars، Color Scales، Icon Sets و Formula Rules |
 | 02-07 | سازمان‌دهی و ساختاردهی داده | ساختار Dataset، Sort، Filter، Data Quality، Pivot، Visualization، Dashboard و Workflow |
+
+### ساختار محتوایی فصل ۳ — کار با داده‌ها و پاک‌سازی
+
+| بخش | عنوان | موضوعات | خروجی |
+|---|---|---|---|
+| 03-01 | وارد کردن داده از فایل‌ها | Get Data، Excel Workbook، Text/CSV، Delimiter، Preview، Load، Load To | ورود صحیح فایل‌های خارجی |
+| 03-02 | اتصال به منابع و Power Query | From Database، Connection، Refresh، Transform Data، Power Query Editor، Steps، Close & Load | ساخت مسیر تکرارپذیر دریافت و آماده‌سازی |
+| 03-03 | Data Cleaning و Duplicate | تشخیص مشکل، Duplicate Key، Remove Duplicates، بررسی قبل از حذف | Dataset تمیزتر و کنترل‌شده |
+| 03-04 | Missing Data و اصلاح متن | Blanks، Filter/Delete، Replace، TRIM، استانداردسازی متن، Text to Columns | اصلاح Missing و ناسازگاری متنی |
+| 03-05 | Sort و Filter | Simple Sort، Custom Sort، Multi-level Sort، Text/Number Filters | پاسخ سریع به سؤال‌های داده‌ای |
+| 03-06 | Append و Merge | Combine Queries، Append، Join Key، Merge، Expand، Join Types | ترکیب چند Dataset و اتصال اطلاعات |
+| 03-07 | Consolidate | Reference، Function، Labels، Summary از چند محدوده | ساخت گزارش تجمیعی |
+| 03-08 | Data Validation و پروژه | Whole Number، Decimal، List، Date، Text Length، Custom، Input Message، Error Alert | کنترل ورودی و اجرای Workflow کامل |
 
 ## SQL / Database
 
