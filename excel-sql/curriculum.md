@@ -20,17 +20,17 @@
 | 14 | Dashboard | KPI، Layout، Interactive Charts، Slicers/Form Controls، اصول طراحی داشبورد | ساخت داشبورد تعاملی |
 | 15 | پروژه پایانی Excel | یکپارچه‌سازی Cleaning، Formula، Pivot، Chart و Dashboard | تحویل یک گزارش/داشبورد کامل |
 
-### ساختار محتوایی فصل ۲
+### ساختار محتوایی فصل ۲ — مقدمات و پایه Excel
 
-| بخش | عنوان | موضوعات |
-|---|---|---|
-| 02-01 | آشنایی با محیط Excel | Workbook، Worksheet، Cell فعال، Formula Bar، Ribbon، Tabها، Search و Quick Access Toolbar |
-| 02-02 | فرمول‌نویسی و توابع عددی پایه | Formula، Reference، عملگرها، SUM، PRODUCT، AVERAGE، MIN، MAX، COUNT، ROUND، POWER، MOD |
-| 02-03 | میانبرها و Fill Handle | انتخاب سریع، Shortcutهای مهم، F4، AutoFill، Series و Copy کردن Formula |
-| 02-04 | کار با متن، تاریخ و زمان | String، LEN، SUBSTITUTE، REPLACE، UPPER، LOWER، TODAY، NOW، DATEDIF |
-| 02-05 | قالب‌بندی و خوانایی داده | Font، Border، Alignment، Wrap Text، Number Formats، Styles، Format as Table |
-| 02-06 | Conditional Formatting | Highlight Rules، Duplicate Values، Top/Bottom، Data Bars، Color Scales، Icon Sets و Formula Rules |
-| 02-07 | سازمان‌دهی و ساختاردهی داده | ساختار Dataset، Sort، Filter، Data Quality، Pivot، Visualization، Dashboard و Workflow |
+| بخش | عنوان |
+|---|---|
+| 02-01 | آشنایی با محیط Excel |
+| 02-02 | فرمول‌نویسی و توابع عددی پایه |
+| 02-03 | میانبرها و Fill Handle |
+| 02-04 | کار با متن، تاریخ و زمان |
+| 02-05 | قالب‌بندی و خوانایی داده |
+| 02-06 | Conditional Formatting |
+| 02-07 | سازمان‌دهی و ساختاردهی داده |
 
 ### ساختار محتوایی فصل ۳ — کار با داده‌ها و پاک‌سازی
 
@@ -44,6 +44,41 @@
 | 03-06 | Append و Merge | Combine Queries، Append، Join Key، Merge، Expand، Join Types | ترکیب چند Dataset و اتصال اطلاعات |
 | 03-07 | Consolidate | Reference، Function، Labels، Summary از چند محدوده | ساخت گزارش تجمیعی |
 | 03-08 | Data Validation و پروژه | Whole Number، Decimal، List، Date، Text Length، Custom، Input Message، Error Alert | کنترل ورودی و اجرای Workflow کامل |
+
+### ساختار محتوایی فصل ۴ — توابع و فرمول‌های پیشرفته
+
+| بخش | عنوان | موضوعات |
+|---|---|---|
+| 04-01 | فرمول‌های پیشرفته و توابع چندمنظوره | SUMPRODUCT، SUMSQ، RANK، SUBTOTAL، AGGREGATE |
+| 04-02 | VLOOKUP و HLOOKUP | Lookup عمودی/افقی، تطبیق دقیق، خطاها و محدودیت‌ها |
+| 04-03 | INDEX و MATCH | جست‌وجوی موقعیت، Lookup منعطف و ترکیب INDEX+MATCH |
+| 04-04 | پردازش و دستکاری متن | CONCAT، FIND، SEARCH، LEFT، MID، RIGHT، LEN، TRIM، SUBSTITUTE، REPLACE، TEXTBEFORE/AFTER، TEXTSPLIT، TEXTJOIN |
+| 04-05 | Named Range و Excel Table | Defined Names، Name Manager، Table، Structured References، Total Row |
+| 04-06 | منطق شرطی و توابع تصمیم‌گیری | IF، AND، OR، NOT، IFERROR، IFNA، SWITCH، IFS |
+| 04-07 | محاسبات شرطی و آرایه‌ای | SUMIF/SUMIFS، COUNTIF/COUNTIFS، AVERAGEIF/AVERAGEIFS، MAXIFS/MINIFS، Dynamic Arrays، FILTER، UNIQUE، Spill |
+
+### ساختار محتوایی فصل ۵ — آمار و تحلیل پیشرفته
+
+| بخش | عنوان | موضوعات |
+|---|---|---|
+| 05-01 | Mean، Median و Mode | شاخص‌های مرکزی و حساسیت به Outlier |
+| 05-02 | Variance و Standard Deviation | Population/ Sample، پراکندگی و تفسیر |
+| 05-03 | Percentile، Quartile و IQR | جایگاه داده، توزیع و Outlier |
+| 05-04 | Correlation و تفسیر رابطه | CORREL، رابطه خطی، Scatter و Correlation ≠ Causation |
+| 05-05 | T-Test، ANOVA و Chi-Square | آزمون فرض، p-value و محدودیت‌های تفسیر |
+| 05-06 | Regression و مدل‌سازی | Linear Regression، R²، Residual، پیش‌بینی و Extrapolation |
+
+### ساختار محتوایی فصل ۶ — Visualization
+
+| بخش | عنوان | موضوعات |
+|---|---|---|
+| 06-01 | مبانی Visualization و ساخت نمودار | سؤال تحلیلی، اجزای Chart، آماده‌سازی داده، Switch Row/Column |
+| 06-02 | Bar و Column Charts | Clustered، Stacked، 100% Stacked و مقایسه دسته‌ها |
+| 06-03 | Line Charts | Trend، Markers، Stacked و 100% Stacked |
+| 06-04 | Pie، Doughnut، Radar و Combo | سهم نسبی، پروفایل چندمعیاره و Secondary Axis |
+| 06-05 | Scatter و Bubble | رابطه دو متغیر، X/Y واقعی و متغیر سوم |
+| 06-06 | Histogram | Bin، توزیع، چولگی، تمرکز و چندقله‌ای بودن |
+| 06-07 | طراحی و شخصی‌سازی Chart | عنوان، محور، Label، رنگ، نویز، خوانایی و پروژه Visualization |
 
 ## SQL / Database
 
