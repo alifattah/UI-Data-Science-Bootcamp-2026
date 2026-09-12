@@ -36,15 +36,6 @@
 | 10 | Trend و تحلیل پیشرفته | LAG/LEAD، Running Total، Moving/Comparative Analysis | تحلیل روند زمانی |
 | 11 | پروژه پایانی SQL | ترکیب SELECT، Filtering، Aggregation، JOIN، Subquery، CTE و Window Functions | ساخت گزارش تحلیلی از دیتابیس |
 
-## استاندارد هر جلسه
-
-هر جلسه باید حداقل این خروجی‌ها را داشته باشد:
-
-- `lesson.md` — درسنامه و نکات مرجع
-- `practice.xlsx` یا فایل دیتابیس/SQL — تمرین عملی
-- `exercises.md` — تمرین‌های کلاسی و Challenge
-- در صورت نیاز `solutions.sql` یا فایل پاسخ
-
 ### الگوی تدریس
 
 **Concept → Demo → Guided Practice → Challenge → Review**
