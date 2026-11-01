@@ -79,10 +79,12 @@ VALUES
     (2, 'Arman Rezaei', 'arman@example.com', 'Shiraz', '2024-12-03'),
     (3, 'Sara Mohammadi', 'sara@example.com', 'Tehran', '2025-01-18'),
     (4, 'Pouya Karimi', 'pouya@example.com', 'Isfahan', '2025-02-02'),
-    (5, 'Mina Hosseini', 'mina@example.com', 'Tabriz', '2025-02-20')
+    (5, 'Mina Hosseini', 'mina@example.com', 'Tabriz', '2025-02-20'),
+    (6, 'Hasti Noori', 'hasti@example.com', 'Rasht', '2025-05-01')
+AS new
 ON DUPLICATE KEY UPDATE
-    full_name = VALUES(full_name),
-    city = VALUES(city);
+    full_name = new.full_name,
+    city = new.city;
 
 -- Sample products
 INSERT INTO products
@@ -92,12 +94,14 @@ VALUES
     (102, 'Mechanical Keyboard', 'Accessories', 2450000.00, TRUE),
     (103, 'USB-C Hub', 'Accessories', 1750000.00, TRUE),
     (104, 'Laptop Stand', 'Office', 990000.00, TRUE),
-    (105, 'Notebook Set', 'Stationery', 280000.00, TRUE)
+    (105, 'Notebook Set', 'Stationery', 280000.00, TRUE),
+    (106, 'Laptop Sleeve', 'Accessories', 690000.00, TRUE)
+AS new
 ON DUPLICATE KEY UPDATE
-    product_name = VALUES(product_name),
-    category = VALUES(category),
-    unit_price = VALUES(unit_price),
-    active = VALUES(active);
+    product_name = new.product_name,
+    category = new.category,
+    unit_price = new.unit_price,
+    active = new.active;
 
 -- Sample orders
 INSERT INTO orders
@@ -109,10 +113,11 @@ VALUES
     (1004, 3, '2025-04-01 18:40:00', 'completed'),
     (1005, 4, '2025-04-09 12:10:00', 'cancelled'),
     (1006, 5, '2025-04-15 16:30:00', 'completed')
+AS new
 ON DUPLICATE KEY UPDATE
-    customer_id = VALUES(customer_id),
-    order_date = VALUES(order_date),
-    status = VALUES(status);
+    customer_id = new.customer_id,
+    order_date = new.order_date,
+    status = new.status;
 
 -- Unit prices are stored on order_items as transaction-time prices.
 -- This is intentional: a product's current price may change later.
@@ -130,11 +135,12 @@ VALUES
     (9, 1005, 102, 1, 2450000.00),
     (10, 1006, 101, 3, 850000.00),
     (11, 1006, 104, 1, 990000.00)
+AS new
 ON DUPLICATE KEY UPDATE
-    order_id = VALUES(order_id),
-    product_id = VALUES(product_id),
-    quantity = VALUES(quantity),
-    unit_price = VALUES(unit_price);
+    order_id = new.order_id,
+    product_id = new.product_id,
+    quantity = new.quantity,
+    unit_price = new.unit_price;
 
 -- Quick verification
 SELECT COUNT(*) AS customers_count FROM customers;
