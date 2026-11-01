@@ -143,17 +143,29 @@
 
 [مشاهده درس‌نامه‌های ماژول ۳](./SQL/03-data-transformation-and-design/README.md)
 
-### ماژول ۴ — اتصال و تحلیل پیشرفته
+### ماژول ۴ — ترکیب نتایج و اتصال جدول‌ها
 
 | درس | عنوان | مباحث | خروجی |
 |---|---|---|---|
-| 01 | اتصال جدول‌ها | INNER JOIN، LEFT JOIN، Cardinality و Join Key | ترکیب داده چندجدولی |
-| 02 | CTE | WITH، چند مرحله محاسباتی و خوانایی Query | ساخت Queryهای قابل نگهداری |
-| 03 | Window Functions | OVER، PARTITION BY، ROW_NUMBER، RANK و DENSE_RANK | رتبه‌بندی و Top N در گروه‌ها |
-| 04 | تحلیل روند زمانی | LAG، LEAD، Running Total و رشد دوره‌ای | تحلیل تغییرات زمانی |
-| 05 | پروژه پایانی SQL | ترکیب Filtering، Aggregation، JOIN، Subquery، CTE و Window | گزارش تحلیلی فروشگاه |
+| 01 | ترکیب نتایج با UNION | UNION، UNION DISTINCT، UNION ALL و خروجی‌های هم‌ساختار | یکپارچه‌سازی چند منبع داده |
+| 02 | INNER JOIN | اتصال رکوردهای متناظر با ON و کلیدهای مشترک | ساخت خروجی چندجدولی |
+| 03 | LEFT JOIN و Anti Join | حفظ ردیف‌های سمت چپ، IS NULL و شرط در ON/WHERE | شناسایی رکوردهای بدون تطبیق |
+| 04 | JOIN چندجدولی و Grain | Cardinality، Fanout، COUNT DISTINCT و جلوگیری از دوباره‌شماری | KPI قابل اعتماد |
+| 05 | الگوهای تحلیلی | مشتری فعال، Conversion Funnel، زمان اولین پاسخ و رتبه‌بندی | حل مسئله واقعی با چند جدول |
+| 06 | آزمایشگاه JOIN و UNION | تمرین یکپارچه و سناریوهای تحلیلی | Query مستقل و قابل دفاع |
 
-[مشاهده درس‌نامه‌های تکمیلی و پروژه SQL](./SQL/lesson-notes.md)
+[مشاهده درس‌نامه‌های ماژول ۴](./SQL/04-joins-and-set-operations/README.md)
+
+### ماژول ۵ — SQL پیشرفته و تحلیل زمانی
+
+| درس | عنوان | مباحث | خروجی |
+|---|---|---|---|
+| 01 | CTE | WITH، چند مرحله محاسباتی و خوانایی Query | ساخت Queryهای قابل نگهداری |
+| 02 | Window Functions | OVER، PARTITION BY، ROW_NUMBER، RANK و DENSE_RANK | رتبه‌بندی و Top N در گروه‌ها |
+| 03 | تحلیل روند زمانی | LAG، LEAD، Running Total و رشد دوره‌ای | تحلیل تغییرات زمانی |
+| 04 | پروژه پایانی SQL | ترکیب Filtering، Aggregation، UNION، JOIN، Subquery، CTE و Window | گزارش تحلیلی فروشگاه |
+
+[مشاهده درس‌نامه‌های ماژول ۵ و پروژه SQL](./SQL/lesson-notes.md)
 
 ### فایل‌های تمرینی مشترک
 
