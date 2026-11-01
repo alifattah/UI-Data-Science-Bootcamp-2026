@@ -1,389 +1,436 @@
-# درسنامه‌های Queryنویسی و تحلیل با SQL
+# درسنامه‌های تکمیلی SQL — اتصال و تحلیل پیشرفته
 
-> این فایل مرحله دوم مسیر SQL است. پیش از شروع آن، ماژول [مبانی پایگاه داده و آماده‌سازی محیط](./01-database-foundations/README.md) را مطالعه و دیتابیس تمرینی را از [فایل SQL](./practice/retail_schema.sql) بسازید. تمرکز این بخش روی تبدیل سؤال‌های کسب‌وکار به Query و استخراج پاسخ تحلیلی است.
+این فایل ادامه مسیر SQL است. پیش از شروع، این سه بخش را مطالعه و دیتابیس تمرینی را اجرا کنید:
 
-**محیط آموزشی:** MySQL 8.4. بعضی Syntaxها در DBMSهای دیگر متفاوت‌اند.
+- [ماژول ۱ — مبانی پایگاه داده](./01-database-foundations/README.md)
+- [ماژول ۲ — کار با داده‌ها و Queryنویسی](./02-data-operations-and-analysis/README.md)
+- [ماژول ۳ — توابع و تبدیل داده](./03-data-transformation-and-design/README.md)
+- [فایل ساخت دیتابیس فروشگاه](./practice/retail_schema.sql)
 
----
-
-# جلسه ۱ — استخراج داده با SELECT
-
-در ماژول مقدماتی با ساختار دیتابیس، جدول، سطر، ستون و مفهوم کلید آشنا شدید. حالا از SQL برای خواندن داده استفاده می‌کنیم.
-
-## اولین Query
-
-
-
-```sql
-SELECT customer_id, city
-FROM customers;
-```
-
-برای همه ستون‌ها می‌توان از `*` استفاده کرد، اما در تحلیل‌های حرفه‌ای بهتر است ستون‌های مورد نیاز را صریح انتخاب کنیم.
-
-## WHERE
-
-```sql
-SELECT *
-FROM orders
-WHERE status = 'completed';
-```
-
-### تمرین
-از جدول سفارش‌ها شناسه سفارش، مشتری و مبلغ را استخراج کنید و فقط سفارش‌های تکمیل‌شده را نمایش دهید.
+تمام مثال‌های این فایل بر اساس **MySQL 8.4** و همان دیتابیس فروشگاه نوشته شده‌اند. در مثال‌ها، مبلغ فروش از ضرب تعداد در قیمت ثبت‌شده هنگام خرید محاسبه می‌شود؛ جدول `orders` به‌تنهایی ستون مبلغ ندارد.
 
 ---
 
-# جلسه ۲ — Filtering و Sorting
+# درس ۱ — اتصال جدول‌ها با JOIN
 
-## عملگرهای مقایسه
-`=`, `<>`, `>`, `<`, `>=`, `<=`
-
-## ترکیب شرط‌ها
-
-```sql
-SELECT *
-FROM orders
-WHERE status = 'completed'
-  AND amount > 1000000;
-```
-
-`AND` همه شرط‌ها را لازم می‌داند؛ `OR` کافی‌بودن یکی از شرط‌ها را می‌پذیرد.
-
-## IN و BETWEEN
-
-```sql
-WHERE city IN ('Tehran', 'Isfahan')
-WHERE amount BETWEEN 500000 AND 2000000
-```
-
-## LIKE
-برای Pattern Matching:
-
-```sql
-WHERE name LIKE 'Ali%'
-```
-
-## ORDER BY و LIMIT
-
-```sql
-SELECT *
-FROM orders
-ORDER BY amount DESC
-LIMIT 10;
-```
-
-ترتیب کلی ساده Query:
-`SELECT → FROM → WHERE → ORDER BY → LIMIT`
-
-### تمرین
-10 سفارش گران را پیدا کنید که در یک شهر مشخص ثبت شده‌اند و وضعیتشان Completed است.
-
----
-
-# جلسه ۳ — Aggregation و KPI
-
-وقتی سؤال درباره «چقدر؟ چندتا؟ میانگین چقدر؟» باشد، معمولاً به Aggregate Function نیاز داریم.
-
-توابع اصلی:
-`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
-
-```sql
-SELECT
-    COUNT(*) AS order_count,
-    SUM(amount) AS total_revenue,
-    AVG(amount) AS avg_order_value,
-    MIN(amount) AS min_order,
-    MAX(amount) AS max_order
-FROM orders
-WHERE status = 'completed';
-```
-
-## NULL
-`COUNT(*)` تعداد Rowها را می‌شمارد؛ `COUNT(column)` مقادیر غیرNULL آن Column را می‌شمارد. NULL با صفر یا رشته خالی یکسان نیست.
-
-## Alias
-برای خوانایی خروجی از `AS` استفاده کنید.
-
-### تمرین
-KPIهای اصلی فروش را محاسبه کنید: تعداد سفارش، درآمد، میانگین مبلغ سفارش و بیشترین سفارش. سپس نتیجه را در قالب یک گزارش مدیریتی توضیح دهید.
-
----
-
-# جلسه ۴ — GROUP BY و HAVING
-
-اگر بخواهیم KPI را برای هر گروه جداگانه حساب کنیم، از `GROUP BY` استفاده می‌کنیم.
-
-```sql
-SELECT
-    city,
-    COUNT(*) AS orders,
-    SUM(amount) AS revenue
-FROM orders
-GROUP BY city;
-```
-
-## HAVING
-`WHERE` قبل از Grouping روی Rowها فیلتر می‌کند؛ `HAVING` بعد از Grouping روی گروه‌ها فیلتر می‌کند.
-
-```sql
-SELECT city, SUM(amount) AS revenue
-FROM orders
-GROUP BY city
-HAVING SUM(amount) > 10000000;
-```
-
-### اشتباه رایج
-شرطی که مربوط به رکورد است معمولاً در WHERE قرار می‌گیرد؛ شرطی که مربوط به نتیجه Aggregate یک گروه است در HAVING.
-
-### تمرین
-فروش هر شهر را محاسبه کنید و فقط شهرهایی را نمایش دهید که حداقل 100 سفارش و بیش از یک آستانه مشخص درآمد دارند.
-
----
-
-# جلسه ۵ — JOINها
-
-داده‌های واقعی معمولاً در چند جدول قرار دارند. JOIN آن‌ها را بر اساس Key مرتبط می‌کند.
+اطلاعات یک کسب‌وکار معمولاً در چند جدول ذخیره می‌شود. برای مثال نام مشتری در `customers`، وضعیت سفارش در `orders` و اقلام سفارش در `order_items` قرار دارد. با JOIN این اطلاعات را بر اساس کلیدهای مرتبط کنار هم قرار می‌دهیم.
 
 ## INNER JOIN
-فقط رکوردهای دارای Match را برمی‌گرداند.
+
+فقط ردیف‌هایی را نگه می‌دارد که در هر دو طرف اتصال، مقدار متناظر داشته باشند.
 
 ```sql
-SELECT o.order_id, c.city, o.amount
-FROM orders o
-INNER JOIN customers c
-    ON o.customer_id = c.customer_id;
-```
-
-## LEFT JOIN
-همه رکوردهای جدول سمت چپ را نگه می‌دارد، حتی اگر Match وجود نداشته باشد.
-
-```sql
-SELECT c.customer_id, o.order_id
-FROM customers c
-LEFT JOIN orders o
+SELECT
+    o.order_id,
+    c.full_name,
+    c.city,
+    o.order_date,
+    o.status
+FROM orders AS o
+INNER JOIN customers AS c
     ON c.customer_id = o.customer_id;
 ```
 
-RIGHT و FULL JOIN نیز در سیستم‌های پشتیبان‌شده کاربرد دارند؛ در عمل LEFT JOIN بسیار رایج است و می‌توان بسیاری از مسائل را با جابه‌جایی سمت جدول حل کرد.
-
-## خطاهای رایج
-- Join روی ستون اشتباه
-- چندبرابرشدن رکوردها به‌علت رابطه One-to-Many
-- فراموش‌کردن شرط Join
-- تبدیل ناخواسته LEFT JOIN به INNER JOIN با شرط WHERE روی جدول سمت راست
-
-### تمرین
-Orders، Customers و Products را متصل کنید و یک خروجی شامل Customer City، Product Category، Order Date و Revenue بسازید.
-
----
-
-# جلسه ۶ — Subquery
-
-Subquery یک Query داخل Query دیگر است.
-
-مثلاً پیدا کردن سفارش‌هایی که از میانگین مبلغ سفارش بزرگ‌ترند:
-
-```sql
-SELECT order_id, amount
-FROM orders
-WHERE amount > (
-    SELECT AVG(amount)
-    FROM orders
-);
-```
-
-## IN
-
-```sql
-SELECT *
-FROM customers
-WHERE customer_id IN (
-    SELECT customer_id
-    FROM orders
-    WHERE amount > 5000000
-);
-```
-
-## EXISTS
-برای بررسی وجود رکورد مرتبط کاربرد دارد و در بسیاری از مسائل منطقی خوانا است.
-
-Subquery می‌تواند در `WHERE`, `FROM` یا بخش‌های دیگر قرار بگیرد، اما اگر Query بیش از حد پیچیده شد، CTE معمولاً خوانایی بهتری ایجاد می‌کند.
-
-### تمرین
-مشتریانی را پیدا کنید که حداقل یک سفارش بالاتر از صدک یا میانگین مشخص داشته‌اند. سپس راه‌حل را با JOIN مقایسه کنید.
-
----
-
-# جلسه ۷ — Data Cleaning و Transformation
-
-SQL فقط برای استخراج داده نیست؛ می‌توان بخشی از Cleaning و Transformation را نیز در آن انجام داد.
-
-## CASE
+برای اضافه کردن نام کالا و مبلغ هر قلم:
 
 ```sql
 SELECT
-    order_id,
-    CASE
-        WHEN amount >= 5000000 THEN 'High'
-        WHEN amount >= 1000000 THEN 'Medium'
-        ELSE 'Low'
-    END AS order_segment
-FROM orders;
+    o.order_id,
+    c.city,
+    p.product_name,
+    oi.quantity,
+    oi.unit_price,
+    oi.quantity * oi.unit_price AS line_revenue
+FROM orders AS o
+JOIN customers AS c
+    ON c.customer_id = o.customer_id
+JOIN order_items AS oi
+    ON oi.order_id = o.order_id
+JOIN products AS p
+    ON p.product_id = oi.product_id
+WHERE o.status IN ('completed', 'shipped');
 ```
 
-## NULL Handling
-بسته به DBMS از `COALESCE` برای جایگزین‌کردن NULL استفاده می‌شود:
+## LEFT JOIN
+
+تمام ردیف‌های جدول سمت چپ را حفظ می‌کند؛ حتی اگر در جدول سمت راست رکورد متناظری وجود نداشته باشد. در این حالت ستون‌های سمت راست برای رکوردهای بدون تطبیق NULL خواهند بود.
+
+مثال: پیدا کردن مشتریانی که هیچ سفارشی ثبت نکرده‌اند:
 
 ```sql
-SELECT COALESCE(discount, 0)
-FROM orders;
+SELECT
+    c.customer_id,
+    c.full_name
+FROM customers AS c
+LEFT JOIN orders AS o
+    ON o.customer_id = c.customer_id
+WHERE o.order_id IS NULL;
 ```
 
-## Type Conversion
-نوع داده اشتباه می‌تواند محاسبات را خراب کند. برای تبدیل نوع داده از ابزارهای DBMS مانند `CAST` استفاده کنید.
+## رابطه یک‌به‌چند و افزایش تعداد ردیف‌ها
 
-## String و Date
-توابع متن و تاریخ بین PostgreSQL، MySQL، SQL Server و سایر DBMSها متفاوت‌اند. بنابراین Syntax مورد استفاده باید با DBMS دوره مشخص شود.
+هر مشتری ممکن است چند سفارش داشته باشد و هر سفارش نیز ممکن است چند قلم کالا داشته باشد. بنابراین پس از JOIN ممکن است تعداد ردیف‌ها بیشتر از تعداد سفارش‌ها شود.
+
+این افزایش لزوماً خطا نیست؛ نتیجه طبیعی رابطه یک‌به‌چند است. اما باید شاخص را متناسب با سطح ردیف محاسبه کنیم:
+
+- تعداد ردیف‌های نتیجه: `COUNT(*)`
+- تعداد سفارش‌های یکتا: `COUNT(DISTINCT o.order_id)`
+- تعداد واحدهای فروخته‌شده: `SUM(oi.quantity)`
+- درآمد: `SUM(oi.quantity * oi.unit_price)`
+
+## خطاهای متداول JOIN
+
+1. اتصال روی ستون نامرتبط یا کلید اشتباه.
+2. فراموش کردن شرط ON و ایجاد حاصل‌ضرب ناخواسته ردیف‌ها.
+3. استفاده از COUNT(*) برای شمارش سفارش در نتیجه‌ای که چند ردیف برای هر سفارش دارد.
+4. قرار دادن شرط جدول سمت راست در WHERE پس از LEFT JOIN و حذف ناخواسته ردیف‌های بدون Match.
 
 ### تمرین
-یک Dataset دارای NULL، Categoryهای ناسازگار و مقادیر عددی ذخیره‌شده به شکل متن را پاک‌سازی و استاندارد کنید.
+
+گزارشی با ستون‌های شناسه سفارش، نام مشتری، شهر، نام کالا، تعداد و درآمد هر قلم بسازید. سپس بررسی کنید تعداد ردیف خروجی با تعداد سفارش‌ها چه تفاوتی دارد.
 
 ---
 
-# جلسه ۸ — CTE / WITH
+# درس ۲ — CTE و ساخت Queryهای چندمرحله‌ای
 
-CTE به ما اجازه می‌دهد یک Query را به مراحل منطقی تقسیم کنیم.
+وقتی Query طولانی می‌شود، بهتر است مسئله را به چند مرحله قابل فهم تقسیم کنیم. **CTE** یا Common Table Expression با عبارت `WITH` یک نتیجه موقت و نام‌گذاری‌شده در همان Query ایجاد می‌کند.
+
+## مثال: محاسبه درآمد هر سفارش
 
 ```sql
-WITH customer_sales AS (
+WITH order_totals AS (
+    SELECT
+        o.order_id,
+        o.customer_id,
+        o.order_date,
+        SUM(oi.quantity * oi.unit_price) AS order_revenue
+    FROM orders AS o
+    JOIN order_items AS oi
+        ON oi.order_id = o.order_id
+    WHERE o.status IN ('completed', 'shipped')
+    GROUP BY
+        o.order_id,
+        o.customer_id,
+        o.order_date
+)
+SELECT
+    order_id,
+    customer_id,
+    order_date,
+    order_revenue
+FROM order_totals
+WHERE order_revenue > 2000000
+ORDER BY order_revenue DESC;
+```
+
+در این Query ابتدا CTE مبلغ سفارش را محاسبه می‌کند؛ سپس Query اصلی روی خروجی مرحله اول فیلتر انجام می‌دهد.
+
+## چند CTE در یک Query
+
+```sql
+WITH order_totals AS (
+    SELECT
+        o.order_id,
+        o.customer_id,
+        SUM(oi.quantity * oi.unit_price) AS order_revenue
+    FROM orders AS o
+    JOIN order_items AS oi
+        ON oi.order_id = o.order_id
+    WHERE o.status IN ('completed', 'shipped')
+    GROUP BY o.order_id, o.customer_id
+),
+customer_revenue AS (
     SELECT
         customer_id,
-        SUM(amount) AS revenue
-    FROM orders
+        SUM(order_revenue) AS total_revenue,
+        COUNT(*) AS order_count
+    FROM order_totals
     GROUP BY customer_id
 )
-SELECT *
-FROM customer_sales
-WHERE revenue > 10000000;
+SELECT
+    customer_id,
+    total_revenue,
+    order_count
+FROM customer_revenue
+ORDER BY total_revenue DESC;
 ```
 
-مزیت‌ها:
-- خوانایی
-- شکستن مسئله پیچیده
-- امکان استفاده مجدد در همان Query
-- ساده‌ترشدن Debug
+هر CTE یک مرحله از منطق تحلیلی را مشخص می‌کند و مرحله بعد می‌تواند از آن استفاده کند.
 
-CTE لزوماً به معنی سریع‌ترشدن Query نیست؛ بیشتر یک ابزار ساختاری و خوانایی است و به Optimizer و DBMS وابسته است.
+## چرا CTE مفید است؟
+
+- Queryهای پیچیده را به مراحل کوچک‌تر تبدیل می‌کند.
+- از تکرار یک منطق محاسباتی جلوگیری می‌کند.
+- نام‌گذاری مراحل، بررسی و Debug کردن را ساده‌تر می‌کند.
+- برای توضیح منطق تحلیل به همکاران مناسب است.
+
+> CTE الزاماً باعث سریع‌تر شدن Query نمی‌شود؛ مزیت اصلی آن در سازمان‌دهی و خوانایی است. نحوه اجرای آن به Optimizer و نسخه DBMS بستگی دارد.
 
 ### تمرین
-ابتدا درآمد هر مشتری را بسازید، سپس Segment مشتری را مشخص کنید و در مرحله نهایی Top Customers را استخراج کنید.
+
+ابتدا درآمد هر قلم سفارش را محاسبه کنید، سپس درآمد هر سفارش و در مرحله بعد درآمد کل هر مشتری را بسازید. در خروجی نهایی مشتریان را از بیشترین درآمد مرتب کنید.
 
 ---
 
-# جلسه ۹ — Window Functions
+# درس ۳ — Window Functions
 
-Window Function محاسبه را روی مجموعه‌ای از Rowهای مرتبط انجام می‌دهد، بدون اینکه Rowها را مثل GROUP BY به یک Row تبدیل کند.
+توابع پنجره‌ای (Window Functions) برای محاسبه شاخص روی مجموعه‌ای از ردیف‌های مرتبط استفاده می‌شوند، اما برخلاف GROUP BY ردیف‌ها را به یک ردیف خلاصه تبدیل نمی‌کنند.
+
+## تفاوت GROUP BY و Window Function
+
+- GROUP BY معمولاً تعداد ردیف‌ها را به تعداد گروه‌ها کاهش می‌دهد.
+- Window Function مقدار محاسبه‌شده را به هر ردیف مرتبط اضافه می‌کند و جزئیات ردیف‌ها باقی می‌مانند.
 
 ## ROW_NUMBER
+
+به هر ردیف در هر گروه یک شماره ترتیبی می‌دهد:
 
 ```sql
 SELECT
     customer_id,
     order_id,
-    amount,
+    order_date,
     ROW_NUMBER() OVER (
         PARTITION BY customer_id
-        ORDER BY amount DESC
-    ) AS order_rank
+        ORDER BY order_date DESC, order_id DESC
+    ) AS order_sequence
 FROM orders;
 ```
 
+در این مثال، سفارش‌های هر مشتری از جدیدترین به قدیمی‌ترین شماره‌گذاری می‌شوند.
+
 ## RANK و DENSE_RANK
-برای رتبه‌بندی استفاده می‌شوند و در برخورد با مقادیر مساوی رفتار متفاوتی دارند.
 
-`PARTITION BY` محدوده محاسبه را مشخص می‌کند و `ORDER BY` ترتیب را تعیین می‌کند.
+هر دو برای رتبه‌بندی مقادیر استفاده می‌شوند؛ تفاوت آن‌ها در برخورد با مقدارهای مساوی است.
 
-### کاربردهای مهم
-- Top N داخل هر گروه
-- اولین/آخرین رکورد
-- رتبه‌بندی مشتریان
-- مقایسه رکورد با رکوردهای دیگر همان گروه
+| مقدارها | ROW_NUMBER | RANK | DENSE_RANK |
+|---|---:|---:|---:|
+| ۹۰ | ۱ | ۱ | ۱ |
+| ۸۵ | ۲ | ۲ | ۲ |
+| ۸۵ | ۳ | ۲ | ۲ |
+| ۷۰ | ۴ | ۴ | ۳ |
 
-### تمرین
-سه سفارش بزرگ هر مشتری را پیدا کنید. سپس با RANK بررسی کنید اگر دو سفارش مبلغ یکسان داشته باشند چه تفاوتی با ROW_NUMBER ایجاد می‌شود.
+- ROW_NUMBER برای هر ردیف شماره جدا می‌دهد.
+- RANK رتبه‌های مساوی می‌دهد و بعد از تساوی، در رتبه‌ها فاصله ایجاد می‌کند.
+- DENSE_RANK رتبه‌های مساوی می‌دهد، اما فاصله ایجاد نمی‌کند.
 
----
+## Top N در هر گروه
 
-# جلسه ۱۰ — Trend و تحلیل پیشرفته
-
-Window Function فقط برای Rank نیست. می‌توان برای مقایسه زمانی و محاسبات تجمعی نیز از آن استفاده کرد.
-
-## LAG و LEAD
+فرض کنید می‌خواهیم محصولات پرفروش هر دسته را رتبه‌بندی کنیم:
 
 ```sql
-SELECT
-    month,
-    revenue,
-    LAG(revenue) OVER (ORDER BY month) AS previous_revenue
-FROM monthly_sales;
+WITH product_revenue AS (
+    SELECT
+        p.product_id,
+        p.product_name,
+        p.category,
+        SUM(oi.quantity * oi.unit_price) AS revenue
+    FROM products AS p
+    JOIN order_items AS oi
+        ON oi.product_id = p.product_id
+    JOIN orders AS o
+        ON o.order_id = oi.order_id
+    WHERE o.status IN ('completed', 'shipped')
+    GROUP BY
+        p.product_id,
+        p.product_name,
+        p.category
+),
+ranked_products AS (
+    SELECT
+        product_id,
+        product_name,
+        category,
+        revenue,
+        RANK() OVER (
+            PARTITION BY category
+            ORDER BY revenue DESC
+        ) AS category_rank
+    FROM product_revenue
+)
+SELECT *
+FROM ranked_products
+WHERE category_rank <= 3
+ORDER BY category, category_rank;
 ```
 
-با این ساختار می‌توان تغییر ماه‌به‌ماه را محاسبه کرد.
+در مرحله اول فروش هر محصول محاسبه می‌شود؛ سپس محصولات در هر دسته رتبه می‌گیرند.
 
-## Running Total
-با Window Frame می‌توان مجموع تجمعی ساخت:
+## اجزای اصلی Window
 
 ```sql
-SUM(revenue) OVER (
-    ORDER BY month
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+FUNCTION() OVER (
+    PARTITION BY group_column
+    ORDER BY sort_column
 )
 ```
 
-## نکته تحلیلی
-قبل از نوشتن Query دقیقاً تعریف کنید «روند»، «ماه قبل» یا «رتبه» بر چه مبنایی است. بسیاری از خطاهای تحلیلی از ابهام در تعریف Metric می‌آیند، نه Syntax SQL.
+- `PARTITION BY` گروه‌های مستقل محاسبه را مشخص می‌کند.
+- `ORDER BY` ترتیب ردیف‌ها را در هر پنجره تعیین می‌کند.
+- برخی توابع تجمعی می‌توانند با Window Frame برای محاسبات تجمعی استفاده شوند.
 
 ### تمرین
-Revenue ماهانه، Revenue ماه قبل، Growth و Running Total را تولید کنید.
+
+برای هر مشتری سفارش‌ها را از جدیدترین به قدیمی‌ترین مرتب کنید. سپس سه محصول برتر هر دسته را بر اساس درآمد به دست آورید.
 
 ---
 
-# جلسه ۱۱ — پروژه پایانی SQL
+# درس ۴ — تحلیل روند زمانی با LAG، LEAD و Running Total
+
+در تحلیل کسب‌وکار، دانستن مقدار فعلی کافی نیست؛ معمولاً می‌خواهیم آن را با دوره قبل مقایسه کنیم یا روند تجمعی را ببینیم.
+
+## آماده‌سازی فروش ماهانه
+
+ابتدا درآمد را در سطح ماه محاسبه می‌کنیم:
+
+```sql
+WITH monthly_revenue AS (
+    SELECT
+        DATE_FORMAT(o.order_date, '%Y-%m-01') AS month_start,
+        SUM(oi.quantity * oi.unit_price) AS revenue
+    FROM orders AS o
+    JOIN order_items AS oi
+        ON oi.order_id = o.order_id
+    WHERE o.status IN ('completed', 'shipped')
+    GROUP BY DATE_FORMAT(o.order_date, '%Y-%m-01')
+)
+SELECT *
+FROM monthly_revenue
+ORDER BY month_start;
+```
+
+## LAG؛ مشاهده دوره قبل
+
+`LAG` مقدار ردیف قبلی را در ترتیب تعریف‌شده برمی‌گرداند:
+
+```sql
+WITH monthly_revenue AS (
+    SELECT
+        DATE_FORMAT(o.order_date, '%Y-%m-01') AS month_start,
+        SUM(oi.quantity * oi.unit_price) AS revenue
+    FROM orders AS o
+    JOIN order_items AS oi
+        ON oi.order_id = o.order_id
+    WHERE o.status IN ('completed', 'shipped')
+    GROUP BY DATE_FORMAT(o.order_date, '%Y-%m-01')
+)
+SELECT
+    month_start,
+    revenue,
+    LAG(revenue) OVER (ORDER BY month_start) AS previous_month_revenue
+FROM monthly_revenue
+ORDER BY month_start;
+```
+
+## محاسبه رشد نسبت به ماه قبل
+
+```sql
+WITH monthly_revenue AS (
+    SELECT
+        DATE_FORMAT(o.order_date, '%Y-%m-01') AS month_start,
+        SUM(oi.quantity * oi.unit_price) AS revenue
+    FROM orders AS o
+    JOIN order_items AS oi
+        ON oi.order_id = o.order_id
+    WHERE o.status IN ('completed', 'shipped')
+    GROUP BY DATE_FORMAT(o.order_date, '%Y-%m-01')
+),
+monthly_comparison AS (
+    SELECT
+        month_start,
+        revenue,
+        LAG(revenue) OVER (ORDER BY month_start) AS previous_revenue
+    FROM monthly_revenue
+)
+SELECT
+    month_start,
+    revenue,
+    previous_revenue,
+    ROUND(
+        100 * (revenue - previous_revenue) / NULLIF(previous_revenue, 0),
+        2
+    ) AS growth_percent
+FROM monthly_comparison
+ORDER BY month_start;
+```
+
+از `NULLIF(previous_revenue, 0)` استفاده کرده‌ایم تا در صورت صفر بودن مقدار دوره قبل، تقسیم بر صفر رخ ندهد. اگر دوره قبلی وجود نداشته باشد، رشد نیز NULL خواهد بود.
+
+## Running Total؛ مجموع تجمعی
+
+```sql
+WITH monthly_revenue AS (
+    SELECT
+        DATE_FORMAT(o.order_date, '%Y-%m-01') AS month_start,
+        SUM(oi.quantity * oi.unit_price) AS revenue
+    FROM orders AS o
+    JOIN order_items AS oi
+        ON oi.order_id = o.order_id
+    WHERE o.status IN ('completed', 'shipped')
+    GROUP BY DATE_FORMAT(o.order_date, '%Y-%m-01')
+)
+SELECT
+    month_start,
+    revenue,
+    SUM(revenue) OVER (
+        ORDER BY month_start
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS running_revenue
+FROM monthly_revenue
+ORDER BY month_start;
+```
+
+## نکته تحلیلی
+
+قبل از محاسبه رشد باید تعریف کنید که «دوره قبل» دقیقاً چیست. LAG ردیف قبلی را بر اساس ترتیب می‌گیرد؛ اگر ماهی در داده وجود نداشته باشد، ردیف قبلی الزاماً ماه تقویمی قبل نیست. برای گزارش ماه‌به‌ماه دقیق، باید تقویم کامل ماه‌ها را در نظر بگیریم.
+
+### تمرین
+
+درآمد ماهانه، درآمد ماه قبل، درصد رشد و مجموع تجمعی را محاسبه کنید. نتیجه را در یک نمودار خطی نمایش دهید و دو نکته از روند استخراج کنید.
+
+---
+
+# درس ۵ — پروژه تحلیلی پایانی SQL
 
 ## سناریو
-یک فروشگاه آنلاین دارای جدول‌های Customers، Products، Orders و Order Items است. مدیریت می‌خواهد عملکرد فروش را تحلیل کند.
 
-## سؤالات پروژه
-1. درآمد کل و تعداد سفارش‌ها چقدر است؟
-2. فروش هر شهر چقدر است؟
-3. Top 10 محصولات چیست؟
-4. مشتریان ارزشمند چه کسانی هستند؟
-5. میانگین مبلغ سفارش چقدر است؟
-6. کدام محصولات در هر Category رتبه بالاتری دارند؟
-7. روند ماهانه فروش چگونه است؟
-8. رشد نسبت به ماه قبل چقدر است؟
-9. مشتریانی که خرید نکرده‌اند چه کسانی هستند؟
-10. سه سفارش بزرگ هر مشتری چیست؟
+شما تحلیلگر داده یک فروشگاه آنلاین هستید. مدیران می‌خواهند بدانند فروش در کدام شهرها و دسته‌های محصول بهتر است، چه مشتریانی فعال‌ترند و عملکرد فروش در طول زمان چه تغییری داشته است.
 
-## الزام فنی
-در پروژه باید حداقل از موارد زیر استفاده شود:
-- SELECT / WHERE / ORDER BY / LIMIT
-- Aggregate Functions
-- GROUP BY / HAVING
+## سؤال‌های پروژه
+
+1. تعداد سفارش‌های معتبر و درآمد کل را محاسبه کنید.
+2. درآمد هر شهر را گزارش کنید.
+3. ۵ محصول برتر را بر اساس درآمد پیدا کنید.
+4. درآمد و تعداد سفارش هر مشتری را محاسبه کنید.
+5. مشتریانی را پیدا کنید که هنوز هیچ سفارشی ندارند.
+6. محصولات استفاده‌نشده در سفارش‌ها را شناسایی کنید.
+7. سه محصول برتر هر دسته را با Window Function رتبه‌بندی کنید.
+8. درآمد ماهانه و رشد نسبت به ماه قبل را محاسبه کنید.
+9. مجموع تجمعی درآمد را به تفکیک ماه بسازید.
+
+## الزام‌های فنی
+
+در فایل نهایی باید حداقل از این موارد استفاده شود:
+
+- SELECT، WHERE، ORDER BY و LIMIT
+- Aggregate Functions و GROUP BY
+- HAVING
 - حداقل دو نوع JOIN
-- Subquery
-- CASE یا Data Transformation
+- یک Subquery یا EXISTS
+- CASE یا توابع تبدیل داده
 - CTE
-- Window Function
+- یک Window Function
 
 ## معیار ارزیابی
-- صحت نتیجه
-- انتخاب درست Grain داده
-- خوانایی Query
-- نام‌گذاری مناسب
-- جلوگیری از Duplicate ناخواسته
-- توانایی توضیح منطق Query
-- تبدیل نتیجه فنی به Insight قابل‌فهم برای کسب‌وکار
 
-> هدف نهایی SQL این نیست که Query طولانی بنویسیم؛ هدف این است که از داده، پاسخ درست و قابل دفاع استخراج کنیم.
+| معیار | پرسش ارزیابی |
+|---|---|
+| صحت | آیا عددها با تعریف شاخص سازگارند؟ |
+| Grain | آیا سطح هر ردیف را درست تشخیص داده‌اید؟ |
+| JOIN | آیا اتصال باعث Duplicate ناخواسته نشده است؟ |
+| خوانایی | آیا Queryها ساختار و Alias مناسب دارند؟ |
+| تفسیر | آیا می‌توانید خروجی را به زبان کسب‌وکار توضیح دهید؟ |
+
+فایل نهایی را با نام `sql_final_project.sql` ذخیره کنید. هر Query را با کامنت و عنوان سؤال مشخص کنید.
+
+> هدف این پروژه نوشتن طولانی‌ترین Query نیست؛ باید با Queryهای روشن و قابل دفاع به سؤال‌های مشخص کسب‌وکار پاسخ دهید.
