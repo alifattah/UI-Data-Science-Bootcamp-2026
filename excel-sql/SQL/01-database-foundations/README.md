@@ -23,4 +23,5 @@
 
 ## فایل عملی ماژول
 
-[دانلود/مشاهده اسکریپت ساخت دیتابیس تمرینی](../practice/retail_schema.sql)
+- [اسکریپت ساخت دیتابیس تمرینی](../practice/retail_schema.sql)
+- [فایل CSV نمونه برای تمرین Import](../practice/customers_sample.csv)
