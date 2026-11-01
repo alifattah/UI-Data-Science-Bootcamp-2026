@@ -30,16 +30,22 @@ flowchart TD
 | 05 | تغییر ساختار جدول با ALTER TABLE | توسعه یا اصلاح Schema بدون ساخت مجدد جدول |
 | 06 | Primary Key، Foreign Key و Relationships | طراحی رابطه‌های یک‌به‌چند و چندبه‌چند |
 
+## ماژول‌های آموزشی
+
+| مرحله | ماژول | محتوای اصلی |
+|---|---|---|
+| ۱ | [مبانی پایگاه داده](./01-database-foundations/README.md) | Database، MySQL، طراحی جدول، Data Type، Import و کلیدها |
+| ۲ | [کار با داده‌ها و Queryنویسی](./02-data-operations-and-analysis/README.md) | SELECT، فیلتر، مرتب‌سازی، DML، Aggregate، GROUP BY و Subquery |
+| ۳ | [تبدیل داده و طراحی](./03-data-transformation-and-design/README.md) | توابع MySQL، CASE، CAST، Grain و Functional Dependency |
+| ۴ | [اتصال و تحلیل پیشرفته](./lesson-notes.md) | JOIN، CTE، Window Functions، روند زمانی و پروژه پایانی |
+
 ## فایل‌ها و تمرین‌های اصلی
 
-- [ماژول مبانی پایگاه داده و آماده‌سازی محیط](./01-database-foundations/README.md)
 - [دیتابیس تمرینی فروشگاه](./practice/retail_schema.sql)
 - [فایل نمونه CSV مشتریان](./practice/customers_sample.csv)
-- [درس‌نامه‌های Queryنویسی و تحلیل](./lesson-notes.md)
+- [درس‌نامه‌های تکمیلی SQL](./lesson-notes.md)
 
-## ادامه مسیر SQL
-
-پس از تکمیل ماژول مبانی، وارد درس‌نامه‌های Queryنویسی، فیلتر، تجمیع، اتصال جدول‌ها و تحلیل پیشرفته شوید.
+**ترتیب پیشنهادی:** ماژول ۱ ← ماژول ۲ ← ماژول ۳ ← اتصال و تحلیل پیشرفته.
 
 ## محیط و نسخه آموزشی
 
