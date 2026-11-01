@@ -165,11 +165,12 @@ INSERT INTO products
     (product_id, product_name, category, unit_price, active)
 VALUES
     (106, 'Laptop Sleeve', 'Accessories', 690000, TRUE)
+AS new
 ON DUPLICATE KEY UPDATE
-    product_name = VALUES(product_name),
-    category = VALUES(category),
-    unit_price = VALUES(unit_price),
-    active = VALUES(active);
+    product_name = new.product_name,
+    category = new.category,
+    unit_price = new.unit_price,
+    active = new.active;
 ```
 
 در این مثال اگر شناسه محصول از قبل وجود داشته باشد، ستون‌های مشخص‌شده به‌روزرسانی می‌شوند؛ اگر وجود نداشته باشد، ردیف جدید ساخته می‌شود.
