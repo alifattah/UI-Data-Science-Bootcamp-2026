@@ -106,9 +106,24 @@
 
 ## SQL / Database
 
+پیش از ورود به Queryنویسی، دانشجویان ماژول **مبانی پایگاه داده و آماده‌سازی محیط SQL** را در شش درس تکمیل می‌کنند. این بخش شامل آشنایی با Database و DBMS، کار با MySQL، طراحی جدول و Data Type، ورود داده، تغییر Schema و طراحی روابط است.
+
+| درس مقدماتی | عنوان | خروجی |
+|---|---|---|
+| [SQL-01](./SQL/01-database-foundations/01-database-and-dbms.md) | Database، DBMS و مدل‌های ذخیره‌سازی | شناخت مفاهیم و انتخاب مدل مناسب |
+| [SQL-02](./SQL/01-database-foundations/02-mysql-and-databases.md) | شروع کار با MySQL | ساخت و مدیریت Database |
+| [SQL-03](./SQL/01-database-foundations/03-tables-and-data-types.md) | طراحی Table و Data Type | تعریف Schema و Constraint |
+| [SQL-04](./SQL/01-database-foundations/04-importing-data.md) | Import داده از CSV و SQL | ورود و کنترل کیفیت داده |
+| [SQL-05](./SQL/01-database-foundations/05-altering-tables.md) | تغییر ساختار جدول | مدیریت تغییرات Schema |
+| [SQL-06](./SQL/01-database-foundations/06-keys-and-relationships.md) | کلیدها و روابط | طراحی رابطه‌های یک‌به‌چند و چندبه‌چند |
+
+**فایل‌های عملی:** [راهنمای SQL](./SQL/README.md) · [Retail Practice Database](./SQL/practice/retail_schema.sql) · [نمونه CSV](./SQL/practice/customers_sample.csv)
+
+پس از این ماژول، مسیر Queryنویسی و تحلیل به ترتیب زیر ادامه پیدا می‌کند:
+
 | جلسه | عنوان | مباحث اصلی | خروجی عملی |
 |---|---|---|---|
-| 01 | مفاهیم Database و SELECT | Database، Table، Row، Column، Primary Key، Relationship، SELECT | استخراج اطلاعات از دیتابیس |
+| 01 | SELECT و شناخت ساختار Query | انتخاب ستون‌ها، FROM، Alias و خواندن جدول‌ها | استخراج ستون‌های موردنیاز از دیتابیس |
 | 02 | Filtering و Sorting | WHERE، مقایسه‌ها، AND/OR/NOT، IN، BETWEEN، LIKE، ORDER BY، LIMIT | ساخت Queryهای دقیق برای پاسخ به سؤال‌های کسب‌وکار |
 | 03 | Aggregation و KPI | COUNT، SUM، AVG، MIN، MAX، NULL و Alias | محاسبه KPIهای فروش |
 | 04 | GROUP BY و HAVING | Grouping، Aggregation روی گروه‌ها، HAVING و تفاوت آن با WHERE | گزارش عملکرد بر اساس گروه |
