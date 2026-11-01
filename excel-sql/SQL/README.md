@@ -11,11 +11,11 @@ flowchart TD
     A["مبانی پایگاه داده"] --> B["ساخت Database و Table"]
     B --> C["Data Types و Constraints"]
     C --> D["ورود و آماده‌سازی داده"]
-    D --> E["تغییر ساختار و مدیریت روابط"]
-    E --> F["SELECT و فیلتر کردن"]
-    F --> G["Aggregation و GROUP BY"]
-    G --> H["JOIN و Subquery"]
-    H --> I["Cleaning، CTE و Window Functions"]
+    D --> E["SELECT، فیلتر و تغییر داده"]
+    E --> F["Aggregation و Subquery"]
+    F --> G["توابع و تبدیل داده"]
+    G --> H["UNION و JOIN چندجدولی"]
+    H --> I["CTE و Window Functions"]
     I --> J["پروژه تحلیل داده"]
 ```
 
@@ -37,15 +37,17 @@ flowchart TD
 | ۱ | [مبانی پایگاه داده](./01-database-foundations/README.md) | Database، MySQL، طراحی جدول، Data Type، Import و کلیدها |
 | ۲ | [کار با داده‌ها و Queryنویسی](./02-data-operations-and-analysis/README.md) | SELECT، فیلتر، مرتب‌سازی، DML، Aggregate، GROUP BY و Subquery |
 | ۳ | [تبدیل داده و طراحی](./03-data-transformation-and-design/README.md) | توابع MySQL، CASE، CAST، Grain و Functional Dependency |
-| ۴ | [اتصال و تحلیل پیشرفته](./lesson-notes.md) | JOIN، CTE، Window Functions، روند زمانی و پروژه پایانی |
+| ۴ | [UNION و اتصال جدول‌ها](./04-joins-and-set-operations/README.md) | UNION، INNER/LEFT JOIN، Anti Join، اتصال چندجدولی و تحلیل چندمنبعی |
+| ۵ | [SQL پیشرفته و تحلیل زمانی](./lesson-notes.md) | CTE، Window Functions، رتبه‌بندی، LAG/LEAD، Running Total و پروژه پایانی |
 
 ## فایل‌ها و تمرین‌های اصلی
 
 - [دیتابیس تمرینی فروشگاه](./practice/retail_schema.sql)
 - [فایل نمونه CSV مشتریان](./practice/customers_sample.csv)
-- [درس‌نامه‌های تکمیلی SQL](./lesson-notes.md)
+- [ماژول ۴ — UNION و اتصال جدول‌ها](./04-joins-and-set-operations/README.md)
+- [ماژول ۵ — SQL پیشرفته و تحلیل زمانی](./lesson-notes.md)
 
-**ترتیب پیشنهادی:** ماژول ۱ ← ماژول ۲ ← ماژول ۳ ← اتصال و تحلیل پیشرفته.
+**ترتیب پیشنهادی:** ماژول ۱ ← ماژول ۲ ← ماژول ۳ ← ماژول ۴ ← ماژول ۵.
 
 ## محیط و نسخه آموزشی
 
