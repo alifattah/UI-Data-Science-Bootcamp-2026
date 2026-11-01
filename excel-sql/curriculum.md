@@ -106,31 +106,58 @@
 
 ## SQL / Database
 
-پیش از ورود به Queryنویسی، دانشجویان ماژول **مبانی پایگاه داده و آماده‌سازی محیط SQL** را در شش درس تکمیل می‌کنند. این بخش شامل آشنایی با Database و DBMS، کار با MySQL، طراحی جدول و Data Type، ورود داده، تغییر Schema و طراحی روابط است.
+بخش SQL با MySQL و با رویکرد تحلیل داده پیش می‌رود. ابتدا پایگاه داده و ساختار جدول‌ها را می‌شناسیم، سپس Queryنویسی، خلاصه‌سازی، تبدیل داده و تحلیل چندجدولی را تمرین می‌کنیم.
 
-| درس مقدماتی | عنوان | خروجی |
-|---|---|---|
-| [SQL-01](./SQL/01-database-foundations/01-database-and-dbms.md) | Database، DBMS و مدل‌های ذخیره‌سازی | شناخت مفاهیم و انتخاب مدل مناسب |
-| [SQL-02](./SQL/01-database-foundations/02-mysql-and-databases.md) | شروع کار با MySQL | ساخت و مدیریت Database |
-| [SQL-03](./SQL/01-database-foundations/03-tables-and-data-types.md) | طراحی Table و Data Type | تعریف Schema و Constraint |
-| [SQL-04](./SQL/01-database-foundations/04-importing-data.md) | Import داده از CSV و SQL | ورود و کنترل کیفیت داده |
-| [SQL-05](./SQL/01-database-foundations/05-altering-tables.md) | تغییر ساختار جدول | مدیریت تغییرات Schema |
-| [SQL-06](./SQL/01-database-foundations/06-keys-and-relationships.md) | کلیدها و روابط | طراحی رابطه‌های یک‌به‌چند و چندبه‌چند |
+### ماژول ۱ — مبانی پایگاه داده و آماده‌سازی محیط
 
-**فایل‌های عملی:** [راهنمای SQL](./SQL/README.md) · [Retail Practice Database](./SQL/practice/retail_schema.sql) · [نمونه CSV](./SQL/practice/customers_sample.csv)
-
-پس از این ماژول، مسیر Queryنویسی و تحلیل به ترتیب زیر ادامه پیدا می‌کند:
-
-| جلسه | عنوان | مباحث اصلی | خروجی عملی |
+| درس | عنوان | مباحث | خروجی |
 |---|---|---|---|
-| 01 | SELECT و شناخت ساختار Query | انتخاب ستون‌ها، FROM، Alias و خواندن جدول‌ها | استخراج ستون‌های موردنیاز از دیتابیس |
-| 02 | Filtering و Sorting | WHERE، مقایسه‌ها، AND/OR/NOT، IN، BETWEEN، LIKE، ORDER BY، LIMIT | ساخت Queryهای دقیق برای پاسخ به سؤال‌های کسب‌وکار |
-| 03 | Aggregation و KPI | COUNT، SUM، AVG، MIN، MAX، NULL و Alias | محاسبه KPIهای فروش |
-| 04 | GROUP BY و HAVING | Grouping، Aggregation روی گروه‌ها، HAVING و تفاوت آن با WHERE | گزارش عملکرد بر اساس گروه |
-| 05 | JOINها | INNER، LEFT، RIGHT، FULL، Join Key، چندجدولی و خطاهای رایج | ترکیب سفارش، مشتری و محصول |
-| 06 | Subquery | Scalar/Multiple-row Subquery، IN/EXISTS و Subquery در FROM | حل مسائل چندمرحله‌ای |
-| 07 | Data Cleaning و Transformation | CASE، NULL handling، CAST/CONVERT، String/Date transformations | آماده‌سازی داده در SQL |
-| 08 | CTE / WITH | ساخت Queryهای چندمرحله‌ای، خوانایی و بازاستفاده | شکستن مسئله پیچیده به مراحل ساده |
-| 09 | Window Functions | OVER، PARTITION BY، ORDER BY، ROW_NUMBER، RANK، DENSE_RANK | رتبه‌بندی و تحلیل داخل گروه |
-| 10 | Trend و تحلیل پیشرفته | LAG/LEAD، Running Total، Moving/Comparative Analysis | تحلیل روند زمانی |
-| 11 | پروژه پایانی SQL | ترکیب SELECT، Filtering، Aggregation، JOIN، Subquery، CTE و Window Functions | ساخت گزارش تحلیلی از دیتابیس |
+| 01 | Database، DBMS و مدل‌های ذخیره‌سازی | Data، Information، Database، DBMS، SQL، Relational و NoSQL | شناخت اجزای محیط داده |
+| 02 | شروع کار با MySQL | اتصال، ساخت/انتخاب/حذف Database، Charset، Collation و Storage Engine | آماده‌سازی فضای کاری |
+| 03 | طراحی جدول و Data Type | CREATE TABLE، انواع متن/عدد/تاریخ، Constraintها | ساخت جدول استاندارد |
+| 04 | ورود داده | CSV، SQL Dump، Import و کنترل کیفیت پس از بارگذاری | ورود داده به MySQL |
+| 05 | تغییر ساختار جدول | ALTER، ADD، MODIFY، CHANGE و DROP COLUMN | اصلاح Schema |
+| 06 | کلیدها و روابط | Primary Key، Foreign Key، Composite Key و Cardinality | طراحی رابطه بین جدول‌ها |
+
+[مشاهده درس‌نامه‌های ماژول ۱](./SQL/01-database-foundations/README.md)
+
+### ماژول ۲ — کار با داده‌ها و Queryنویسی
+
+| درس | عنوان | مباحث | خروجی |
+|---|---|---|---|
+| 01 | خواندن، فیلتر و مرتب‌سازی | SELECT، WHERE، AND/OR، IN، BETWEEN، LIKE، NULL، ORDER BY، LIMIT | استخراج داده هدفمند |
+| 02 | درج و تغییر داده | INSERT، UPDATE، DELETE، TRUNCATE و تفاوت REPLACE | شناخت عملیات DML و اجرای ایمن |
+| 03 | توابع تجمیعی و گروه‌بندی | COUNT، SUM، AVG، MIN، MAX، GROUP_CONCAT، GROUP BY و HAVING | محاسبه KPI و گزارش گروهی |
+| 04 | Subquery و EXISTS | Scalar Subquery، IN، EXISTS، NOT EXISTS و Derived Table | حل سؤال‌های چندمرحله‌ای |
+| 05 | آزمایشگاه تحلیل | تمرین‌های تحلیلی روی دیتابیس فروشگاه | تبدیل سؤال کسب‌وکار به Query |
+
+[مشاهده درس‌نامه‌های ماژول ۲](./SQL/02-data-operations-and-analysis/README.md)
+
+### ماژول ۳ — توابع و آماده‌سازی داده
+
+| درس | عنوان | مباحث | خروجی |
+|---|---|---|---|
+| 01 | توابع پرکاربرد MySQL | توابع متن، عدد، تاریخ و زمان، COALESCE | استانداردسازی و تبدیل داده |
+| 02 | CASE و CAST | دسته‌بندی شرطی، تبدیل نوع، STR_TO_DATE و Conditional Aggregation | ساخت ویژگی و تبدیل داده خام |
+| 03 | کلید، Grain و وابستگی تابعی | Super Key، Candidate Key، Functional Dependency و Grain | تشخیص یکتایی و جلوگیری از خطای تحلیل |
+
+[مشاهده درس‌نامه‌های ماژول ۳](./SQL/03-data-transformation-and-design/README.md)
+
+### ماژول ۴ — اتصال و تحلیل پیشرفته
+
+| درس | عنوان | مباحث | خروجی |
+|---|---|---|---|
+| 01 | اتصال جدول‌ها | INNER JOIN، LEFT JOIN، Cardinality و Join Key | ترکیب داده چندجدولی |
+| 02 | CTE | WITH، چند مرحله محاسباتی و خوانایی Query | ساخت Queryهای قابل نگهداری |
+| 03 | Window Functions | OVER، PARTITION BY، ROW_NUMBER، RANK و DENSE_RANK | رتبه‌بندی و Top N در گروه‌ها |
+| 04 | تحلیل روند زمانی | LAG، LEAD، Running Total و رشد دوره‌ای | تحلیل تغییرات زمانی |
+| 05 | پروژه پایانی SQL | ترکیب Filtering، Aggregation، JOIN، Subquery، CTE و Window | گزارش تحلیلی فروشگاه |
+
+[مشاهده درس‌نامه‌های تکمیلی و پروژه SQL](./SQL/lesson-notes.md)
+
+### فایل‌های تمرینی مشترک
+
+- [اسکریپت ساخت دیتابیس فروشگاه](./SQL/practice/retail_schema.sql)
+- [فایل CSV نمونه برای تمرین Import](./SQL/practice/customers_sample.csv)
+
+**محیط آموزشی:** MySQL 8.4. مثال‌ها با همین DBMS نوشته شده‌اند؛ برخی توابع و Syntaxها در PostgreSQL و SQL Server متفاوت‌اند.
